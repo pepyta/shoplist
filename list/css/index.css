@@ -1,0 +1,38 @@
+header,
+main,
+footer {
+    left: 300px;
+}
+
+
+.empty-cart {
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    left: calc(50%+150px);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.cart {
+    font-size: 200px;
+}
+
+a {
+    color: black;
+}
+
+.listname {
+    padding: 20px 0 20px 0;
+}
+
+@media only screen and (max-width: 992px) {
+    header,
+    main,
+    footer {
+        left: 0;
+    }
+    .empty-cart {
+        left: 50%;
+    }
+}
