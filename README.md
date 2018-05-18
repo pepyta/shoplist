@@ -48,12 +48,14 @@ If you want to contribute just make a pull request and I will test it and if it 
 
 * **Gál Péter** - *Initial work* - [pepyta](https://github.com/pepyta)
 
-See also the list of [contributors](https://github.com/shoplist.ml/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/pepyta/shoplist.ml/graphs/contributors) who participated in this project.
 
 ## In motion
+<p>
 <img src="https://shoplist.ml/github/1.gif" width="31%" style="display:inline-block;">
 <img src="https://shoplist.ml/github/2.gif" width="31%" style="display:inline-block;">
 <img src="https://shoplist.ml/github/3.gif" width="31%" style="display:inline-block;">
+  </p>
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
