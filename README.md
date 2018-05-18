@@ -15,6 +15,9 @@
 This project's purpose is to make an online shopping list with open-source code.<br>
 This is my first project so I appreciate any help or commit.
 
+## Live preview
+[Try the project](https://shoplist.ml)
+
 ## Getting Started
 To make your own Shopping List you need a Web Server (you can use XAMPP for local).
 
@@ -45,8 +48,12 @@ If you want to contribute just make a pull request and I will test it and if it 
 
 * **Gál Péter** - *Initial work* - [pepyta](https://github.com/pepyta)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/shoplist.ml/project/contributors) who participated in this project.
 
+## In motion
+<img src="https://shoplist.ml/github/1.gif"><br>
+<img src="https://shoplist.ml/github/2.gif"><br>
+<img src="https://shoplist.ml/github/3.gif">
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
