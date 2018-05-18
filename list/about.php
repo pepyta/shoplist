@@ -1,0 +1,57 @@
+<?php include 'functions.php';
+initalizeHead();
+initalizeNavbar();?>
+<!-- Main contents -->
+<main>
+    <div class="row">
+        <div class="col s12 l3">
+            <div class="card">
+                <div class="card-image indigo">
+                    <img src="img/logo.png">
+                </div>
+                <div class="card-content">
+                    Hey! I'm the creator of Shoplist.ml.<br>Let me tell you a little bit of myself. I'm a 15 years old student and I learn IT in high school. I've started learning programming when I was 10 years old.<br><br> If you have any questions or you have some offers send it to my email.<br>
+                    <a href="mailto:pepyta118@gmail.com">pepyta118@gmail.com</a>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 l3">
+            <div class="card">
+                <div class="card-image">
+                    <img src="img/github.png">
+                </div>
+                <div class="card-content">
+                    The project is now out on GitHub!<br> If you're intrested in coding or you want to know what do I use to make it work, then check this out!<br><br>
+                    <a href="https://github.com/pepyta/shoplist.ml">GitHub</a>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 l3">
+            <div class="card">
+                <div class="card-image">
+                    <img src="img/materializecss.png">
+                </div>
+                <div class="card-content">
+                    This project is purely made with MaterializeCSS framework, PHP, HTML, CSS and JavaScript. Check out them too!
+                    <a href="http://materializecss.com">MaterializeCSS.com</a>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 l3">
+            <div class="card">
+                <div class="card-content">
+                    This project is under MIT License.
+                </div>
+            </div>
+        </div>
+        <div class="col s12 l3">
+            <div class="card">
+                <div class="card-content">
+                    If you've found a bug, then feel free to send it to us using <a href="https://github.com/pepyta/shoplist.ml/issues">GitHub</a> or <a href="mailto:pepyta118@gmail.com">via the email address</a>.
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- Scripts -->
+<?php initalizeScripts();?>
