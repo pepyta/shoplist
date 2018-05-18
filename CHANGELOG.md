@@ -27,3 +27,7 @@ Version 1.2:
 + Switched from pure SHA256 to SHA256 + SALT when login and register
 + MIT License
 ~ Reworked login page
+
+Version 1.2.1:
++ You can use "Bought all" function
++ No grey row left after buying all item from your list
