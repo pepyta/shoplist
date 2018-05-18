@@ -55,7 +55,8 @@ See also the list of [contributors](https://github.com/pepyta/shoplist.ml/graphs
 <img src="https://shoplist.ml/github/1.gif" width="31%" style="display:inline-block;">
 <img src="https://shoplist.ml/github/2.gif" width="31%" style="display:inline-block;">
 <img src="https://shoplist.ml/github/3.gif" width="31%" style="display:inline-block;">
-  </p>
+</p>
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
