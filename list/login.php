@@ -2,27 +2,13 @@
 include 'functions.php';
 initalizeHead();
 //AUTO LOGIN W/ COOKIES
-if(isset($_COOKIE['name']) && isset($_COOKIE['ssid'])){
-    $sql = "SELECT * FROM users WHERE name = '".$_COOKIE['name']."' AND ssid  = '".$_COOKIE['ssid']."'"; 
-    $result = $conn->query($sql); 
-    if ($result->num_rows == 1) { 
-        $loggedin = TRUE;
-    } else {
-        $loggedin = FALSE;
-    }
-} else{
-    $loggedin = FALSE;
-}
-
-//REDIRECT IF LOGGED IN
-if($loggedin == TRUE){
+if(isUserLoggedIn($_COOKIE['name'], $_COOKIE['ssid'])){
     Header("Location:index.php");
 }
-
     
 //TRY TO LOGIN
 if(isset($_GET['login'])){ 
-    $sql = "SELECT * FROM users WHERE name = '".$_POST['name']."' AND pass  = '".hash('sha256', $_POST['pass'])."'"; 
+    $sql = "SELECT * FROM users WHERE name = '".$_POST['name']."' AND pass  = '".encrypt($_POST['pass'])."'"; 
     $result = $conn->query($sql); 
     if ($result->num_rows > 0) { 
         $ssid = md5(time());
@@ -37,32 +23,6 @@ if(isset($_GET['login'])){
         }
     } else {
         setcookie("logininfo", 2);
-        Header("Location:login.php");
-    }
-}
-
-
-
-if(isset($_GET['register'])){
-    $sql = "SELECT * FROM users WHERE name='".$_POST['name']."'";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows == 0) {
-        $ssid = md5(time());
-        $sql = "INSERT INTO users (name, email, pass, ssid)
-        VALUES ('".$_POST['name']."', '".$_POST['email']."', '".hash('sha256', $_POST['pass'])."', '".$ssid."')";
-
-        if ($conn->query($sql) === TRUE) {
-            setcookie("name", $_POST['name']);
-            setcookie("ssid", $ssid);
-            setcookie("registerinfo", 3);
-            Header("Location:index.php");
-        } else {
-            setcookie("registerinfo", 2);
-            Header("Location:login.php");
-        }
-    } else {
-        setcookie("registerinfo", 1);
         Header("Location:login.php");
     }
 }
@@ -82,139 +42,52 @@ if(isset($_COOKIE['logininfo'])){
         setcookie("logininfo", "");
     }
 }
-if(isset($_COOKIE['registerinfo'])){
-    if($_COOKIE['registerinfo'] == 1){
-        echo '
-        <div id="logininfo" class="modal">
-            <div class="modal-content">
-              <h4>Failed to register</h4>
-              <p>Username already taken</p>
-            </div>
-          </div>
-          '; 
-        setcookie("registerinfo", "");
-    } elseif($_COOKIE['registerinfo'] == 2){
-        echo '
-        <div id="logininfo" class="modal">
-            <div class="modal-content">
-              <h4>There were some errors</h4>
-              <p>Try again later!</p>
-            </div>
-          </div>
-          '; 
-        setcookie("registerinfo", "");
-    }elseif($_COOKIE['registerinfo'] == 2){
-        echo '
-        <div id="logininfo" class="modal">
-            <div class="modal-content">
-              <h4>Successful registration</h4>
-              <p>Now you have a ShopList.ml account!</p>
-            </div>
-          </div>
-          '; 
-        setcookie("registerinfo", "");
-    }
-}
-
 ?>
+    <div class="row ">
+        <div class="row box middle " style="padding: 10px; ">
 
-    <!DOCTYPE html>
-    <HTML lang="en">
-    <!-- Include head -->
-    <?php include 'includes/head.php'; ?>
+            <center>
 
-    <BODY>
+                <h5 class="white-text">Please, login into your account</h5>
+                <div class="section"></div>
 
-        <div class="row ">
-            <div class="grey lighten-4 row box middle " style="padding: 10px; ">
+                <div class="container">
+                    <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
 
-                <!-- Login -->
-                <form class="col s12 m6 l6 " method="post" action="?login " id="login " style="display:none; ">
-                    <div class='row'>
-                        <div class='input-field col s12'>
-                            <input type='text' name='name' id='username' />
-                            <label for='username'>Username</label>
-                        </div>
+                        <form class="col s12" method="post" action="?login">
+                            <div class='row'>
+                                <div class='col s12'>
+                                </div>
+                            </div>
+
+                            <div class='row'>
+                                <div class='input-field col s12'>
+                                    <input type='text' name='name' id='name' required>
+                                    <label for='name'>Enter your username</label>
+                                </div>
+                            </div>
+
+                            <div class='row'>
+                                <div class='input-field col s12'>
+                                    <input type='password' name='pass' id='password' required>
+                                    <label for='password'>Enter your password</label>
+                                </div>
+                                <label style='float: right;'>
+								<a class='indigo-text' href='#!'><b>Forgot Password?</b></a>
+							</label>
+                            </div>
+
+                            <br />
+                            <center>
+                                <div class='row'>
+                                    <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect indigo'>Login</button>
+                                </div>
+                            </center>
+                        </form>
                     </div>
-
-                    <div class='row'>
-                        <div class='input-field col s12'>
-                            <input type='password' name='pass' id='password' />
-                            <label for='password'>Password</label>
-                        </div>
-                    </div>
-
-                    <br />
-                    <center>
-                        <div class='row'>
-                            <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect waves-light indigo darken-2'>Login</button>
-                        </div>
-                    </center>
-                </form>
-
-                <!-- Register -->
-                <form class="col s12 m6 l6 " method="post" action="?register " id="register " style="display:none; ">
-                    <div class='row'>
-                        <div class='input-field col s12'>
-                            <input type='text' name='name' id='username' />
-                            <label for='username'>Username</label>
-                        </div>
-                    </div>
-
-                    <div class='row'>
-                        <div class='input-field col s12'>
-                            <input type='password' name='pass' id='password' />
-                            <label for='password'>Password</label>
-                        </div>
-                    </div>
-
-                    <div class='row'>
-                        <div class='input-field col s12'>
-                            <input type='password' name='pass2' id='password2' />
-                            <label for='password2'>Password again</label>
-                        </div>
-                    </div>
-                    <div class='row'>
-                        <div class='input-field col s12'>
-                            <input type='email' name='email' id='email' />
-                            <label for='email'>Email</label>
-                        </div>
-                    </div>
-                    <br />
-                    <center>
-                        <div class='row'>
-                            <button type='submit' name='btn_register' class='col s12 btn btn-large waves-effect waves-light indigo darken-2'>Register</button>
-                        </div>
-                    </center>
-                </form>
-
-                <!-- Default -->
-                <div class="col s12 l6 m6 flow-text center-align " id="openlogin ">
-                    <h4>Login</h4>If you already have an account on Shoplist.ml you can log in.<br>
-                    <button class="btn btn-large indigo darken-2 waves-effect waves-light " onclick="openLogin(); ">Login</button>
                 </div>
-                <div class="col s12 l6 m6 flow-text center-align " id="openregister ">
-                    <h4>Register</h4>If you don't have an account you must register to use our service.<br>
-                    <button class="btn btn-large indigo darken-2 waves-effect waves-light " onclick="openRegister(); ">Register</button>
-                </div>
-            </div>
-        </div>
+                <a class="white-text" href="register.php">Create account</a>
+            </center>
 
-        <!-- Scripts -->
-        <?php initalizeScripts(); ?>
-        <script type=" text/javascript ">
-            function openLogin() {
-                document.getElementById("openlogin ").style = "display:none ";
-                document.getElementById("login ").style = " ";
-                document.getElementById("register ").style = "display:none ";
-                document.getElementById("openregister ").style = " ";
-            }
-
-            function openRegister() {
-                document.getElementById("openregister ").style = "display:none ";
-                document.getElementById("register ").style = " ";
-                document.getElementById("login ").style = "display:none ";
-                document.getElementById("openlogin ").style = " ";
-            }
-
-        </script>
+            <!-- Scripts -->
+            <?php initalizeScripts(); ?>
