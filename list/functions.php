@@ -40,6 +40,8 @@ function initalizeScripts(){
     <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/js/materialize.min.js'></script>
     <script src='js/global.js' type='text/javascript'></script>
     <script src='js/$filename.js' type='text/javascript'></script>
+    
+    <!-- Copyright (c) 2018 Gál Péter -->
     ";
 }
 
@@ -72,7 +74,7 @@ function initalizeNavbar(){
             </div>
         </li>
     <li><a class="waves-effect" href="index.php"><i class="material-icons left">content_paste</i>My lists</a></li>
-    <li><a class="waves-effect" href="trash.php"><i class="material-icons left">delete</i>Thrash</a></li>
+    <li><a class="waves-effect" href="trash.php"><i class="material-icons left">delete</i>Trash</a></li>
     <li><a class="waves-effect" href="about.php"><i class="material-icons left">info_outline</i>About</a></li>
     <li><a class="waves-effect" href="logout.php"><i class="material-icons left">exit_to_app</i>Log out</a></li>
   </ul>
@@ -215,7 +217,7 @@ function boughtItem($itemid, $quantity, $listid){
     global $conn;
     if(isset($quantity)) {
         if(isThisItemBelongsToUser($itemid, $listid)){
-            if ($quantity == "ALL") {
+            if ($quantity == 0) {
                 $bought = "quantity";
             } else {
                 $bought = "bought+".$quantity;

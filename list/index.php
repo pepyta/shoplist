@@ -149,14 +149,14 @@ initalizeNavbar();
                                                 if($row2["quantity"]-$row2["bought"] > 1){
                                                     echo '
                                                     <li><a onclick="boughtItem('.$row2["id"].',1,'.$list["id"].');">Bought one</a></li>
-                                                    <li><a onclick="boughtItem('.$row2["id"].',"ALL",'.$list["id"].');">Bought all</a></li>
+                                                    <li><a onclick="boughtItem('.$row2["id"].',0,'.$list["id"].');">Bought all</a></li>
                                                     ';
                                                 } else {
                                                     echo '<li><a onclick="boughtItem('.$row2["id"].',1,'.$list["id"].');">Bought</a></li>';
                                                 }
                                                 echo '
                                                 <li class="divider" tabindex="-1"></li>
-                                                <li><a href="?req=delete;'.$row2['id'].'">Delete</a></li>
+                                                
                                               </ul>
 
                                         </span>
@@ -166,8 +166,6 @@ initalizeNavbar();
                                     </li>';
                                 }
                                 echo '</ul>';
-                            } else {
-                                echo '<center id="noitem"><span class="flow-text">You have no item in your list!</span></center>';
                             }
                     
                         echo '
