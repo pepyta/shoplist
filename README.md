@@ -46,7 +46,7 @@ If you want to contribute just make a pull request and I will test it and if it 
 
 ## Authors
 
-* **Gál Péter** - *Initial work* - [pepyta](https://github.com/pepyta)
+* **Gál Péter** -  [pepyta](https://github.com/pepyta)
 
 See also the list of [contributors](https://github.com/pepyta/shoplist.ml/graphs/contributors) who participated in this project.
 
