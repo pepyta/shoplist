@@ -14,7 +14,7 @@ $sql = "SELECT * FROM items";
 $result = $conn->query($sql);
 $items = $result->num_rows;
 
-initHead();
+$template->parse("list/html/head.html");
 ?>
     <div class="parallax-container land">
         <div class="parallax animation">

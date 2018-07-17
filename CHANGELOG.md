@@ -1,4 +1,17 @@
 # CHANGELOG
+## Version 1.4
+- Javascript call when login and register with toasts as indicator
+- Switched to a template engine to separate HTML and PHP
+- Loader for /list
+- Ajax call for additem
+
+## Version 1.3:
+- Javascript call for all pages in "My lists", "Thrash" and "About" pages with loader.
+- Fixed Header redirection (added 302 HTTP code) along with a new PHP function: redirect()
+- reCaptcha for login and register
+- New landing page design
+- Switched from MaterializeCSS 1.0.0-rc1 to 1.0.0-rc2
+
 ## Version 1.2.1:
 - You can use "Bought all" function
 - No grey row left after buying all item from your list
