@@ -40,3 +40,10 @@ a {
 
     width: 65%;
 }
+
+
+#restore {
+    position: absolute;
+    right: 0;
+    bottom: -20px;
+}

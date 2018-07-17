@@ -1,9 +1,46 @@
-header,
-main,
-footer {
-    left: 300px;
+html,
+body {
+    height: 100%;
 }
 
+body {
+    overflow-x: hidden;
+
+}
+
+
+/* Preloader */
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    /* change if the mask should have another color then white */
+    z-index: 999999999999999999;
+    /* makes sure it stays on top */
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.spinner-indigo,
+.spinner-indigo-only {
+    border-color: #3f51b5;
+}
+
+#status {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 69;
+    text-align: center;
+    text-align: center;
+}
 
 .empty-cart {
     position: absolute;
@@ -35,4 +72,8 @@ a {
     .empty-cart {
         left: 50%;
     }
+}
+
+.btn-floating {
+    z-index: 2;
 }

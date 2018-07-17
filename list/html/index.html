@@ -1,0 +1,46 @@
+<!-- Preloader -->
+<div id="preloader">
+    <div id="status">
+        <div class="preloader-wrapper active">
+            <div class="spinner-layer spinner-indigo-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Tap Target Structure -->
+<div class="tap-target indigo white-text" data-target="add">
+    <div class="tap-target-content">
+        <h5>{CREATE_LIST_TAPTARGET_TITLE}</h5>
+        <p>{CREATE_LIST_TAPTARGET_TEXT}</p>
+    </div>
+</div>
+
+<div id="modal1" class="modal">
+    <form method="POST" name="add" action="?add" id="add">
+        <div class="modal-content">
+            <div class="flow-text">{CREATE_LIST_MODAL_TITLE}</div>
+            <div class="input-field col s12">
+                <input id="name" name="name" type="text" required autocomplete="off">
+                <label for="name">{NAME_OF_THE_LIST}</label>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <a onclick="form.submit();">
+            <button class="btn waves-effect waves-light indigo btn-flat white-text">{CREATE}</button>
+            </a>
+        </div>
+    </form>
+</div>
+<!-- Main contents -->
+<main id="main">
+</main>

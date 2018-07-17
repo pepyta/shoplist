@@ -1,34 +1,12 @@
-.middle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-}
-
 html,
 body {
-    height: 100%;
+    color: #fff;
+    background: linear-gradient(-45deg, #7986cb, #5c6bc0, #3f51b5, #3949ab);
+    background-size: 400% 400%;
+    -webkit-animation: Gradient 15s ease infinite;
+    -moz-animation: Gradient 15s ease infinite;
+    animation: Gradient 15s ease infinite;
 }
-
-.box {
-    width: 40%;
-}
-
-
-@media only screen and (max-width: 992px) {
-    .box {
-        width: 100%;
-        height: 100%;
-    }
-    body {
-        background: #f5f5f5;
-        ;
-    }
-}
-
-@media only screen and (min-width:992px) {
-    html {
-        background-color: #3f51b5;
-    }
+html {
+    background-color: #3f51b5;
 }

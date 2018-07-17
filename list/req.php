@@ -1,9 +1,9 @@
 <?php
 include 'functions.php';
-
-//Make sure ?req isn't empty
-if(isset($_GET['req']) && $_GET['req'] !== ''){
-    //Syntax is: req.php?req=function;param1;param2;param3...
+if(isset($_POST['name']) && isset($_POST['quantity']) && isset($_POST['listid'])){
+    additem($_POST['name'], $_POST['quantity'], $_POST['listid']);
+} elseif(isset($_GET['req']) && $_GET['req'] !== ''){
+    //Syntax is: req.php?req=function;param1;param2;param3
     $req = explode(';', $_GET['req']);
     
     //Function's name

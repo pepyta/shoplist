@@ -1,6 +1,6 @@
 <?php
-setcookie("name", "");
-setcookie("ssid", "");
-Header("Location:index.php");
+session_start();
+session_destroy();
+Header("Location:login.php");
 
 ?>

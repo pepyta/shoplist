@@ -1,0 +1,78 @@
+<div class="row ">
+    <div class="row box middle " style="padding: 10px; ">
+        <center>
+
+            <h5 class="white-text">{REGISTER_HEADER}</h5>
+            <div class="section"></div>
+
+            <div class="container">
+                <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+
+                    <form id="register" class="col s12" method="post" action="?register">
+                        <div class='row'>
+                            <div class='col s12'>
+                            </div>
+                        </div>
+
+                        <div class='row'>
+                            <div class='input-field col s12'>
+                                <input type='text' name='name' id='name' required>
+                                <label for='name'>{ENTER_USERNAME}</label>
+                            </div>
+                        </div>
+
+                        <div class='row'>
+                            <div class='input-field col s12'>
+                                <input type='password' name='password' id='password' required>
+                                <label for='password'>{ENTER_PASSWORD}</label>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='input-field col s12'>
+                                <input type='password' name='password2' id='password2' required>
+                                <label for='password2'>{ENTER_PASSWORD_AGAIN}</label>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class='input-field col s12'>
+                                <input type='email' name='email' id='email' required>
+                                <label for='email'>{ENTER_EMAIL}</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class='input-field col s12'>
+                                <p>
+                                    <label>
+                                        <input type="checkbox" name="cb1" id="cb1" required>
+                                        <span>
+                                        {GDPR_AGREEMENT}
+                                        </span>
+                                    </label>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class='input-field col s12'>
+                                <p>
+                                    <label>
+                                        <input type='checkbox' name='cb2' id='cb2' required>
+                                        <span>
+                                            {AGREE_PRIVACY_POLICY}
+                                        </span>
+                                    </label>
+                                </p>
+                            </div>
+                        </div>
+                        <br />
+                        <center>
+                            <div class='row'>
+                                <button class="g-recaptcha col s12 btn btn-large waves-effect indigo" data-sitekey="6LeRHF0UAAAAAA6hI6xnAYuKpE_8-LTwCTtzLPt4" data-badge="bottom-right" data-callback='onSubmit'>{REGISTER}</button>
+                            </div>
+                        </center>
+                    </form>
+                </div>
+            </div>
+            <a class="white-text" href="login.php">{LOGIN_INSTEAD}</a>
+        </center>
+    </div>
+</div>
