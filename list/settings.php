@@ -3,7 +3,6 @@
 error_reporting(1);
 
 //MYSQLI connection
-//$conn = new mysqli("localhost", "list", "67cd827a3e3e9971ca7977344d", "list");
 $conn = new mysqli("localhost", "root", "", "list");
 
 //Make sure website works properly
