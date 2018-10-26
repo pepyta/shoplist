@@ -1,7 +1,17 @@
 <?php
 include 'functions.php';
-if(isset($_POST['name']) && isset($_POST['quantity']) && isset($_POST['listid'])){
+if(isset($_GET['landing'])){
+    
+} elseif(isset($_GET['itemadd'])){
     additem($_POST['name'], $_POST['quantity'], $_POST['listid']);
+} elseif(isset($_GET['nick'])){
+    changeNickname($_POST['name']);
+} elseif(isset($_GET['privacy_settings'])){
+    changePrivacySettings($_POST['checkbox_google_analytics']);
+} elseif(isset($_GET['password_change'])){
+    changePassword($_POST['old_password'], $_POST['new_password']);
+} elseif(isset($_GET['login'])){
+    loginUser($_POST["name"], $_POST["email"], $_POST["id"]);
 } elseif(isset($_GET['req']) && $_GET['req'] !== ''){
     //Syntax is: req.php?req=function;param1;param2;param3
     $req = explode(';', $_GET['req']);

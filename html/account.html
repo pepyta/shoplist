@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col s12 m9 l10">
+        <div id="privacy" class="section scrollspy">
+            <div class="row">
+                <h3 class="header col s12 indigo-text">
+                    {PRIVACY_SETTINGS}
+                </h3>
+                <div class="col s12 m6">
+                    <blockquote>
+                        You can change your privacy settings so you can disable the tracking of third party applications.<br> NOTE: If you disable third party tracking we may collect data of your usage of the site in order to provide you service.
+                    </blockquote>
+                </div>
+                <div class="col s12 m6">
+                    <div class="card">
+                        <div class="card-content">
+                            <form method="post" action="#" id="privacy_settings">
+                                <div class="input-field col s12">
+                                    <p>
+                                        <label>
+                                            <input type="checkbox" {CHECKBOX_GOOGLE_ANALYTICS} id="checkbox_google_analytics" name="checkbox_google_analytics" />
+                                            <span>Google Analytics</span>
+                                        </label>
+
+                                    </p>
+                                </div>
+                                <input type="submit" class="waves-effect waves-light btn-large indigo" value="{SAVE}">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="delete" class="section scrollspy">
+            <div class="row">
+                <h3 class="header col s12 indigo-text">
+                    {DELETE_DATAS}
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="col hide-on-small-only m3 l2">
+        <div class="pinned">
+            <ul class="section table-of-contents">
+                <li><a href="#privacy">{PRIVACY_SETTINGS}</a></li>
+
+                <li><a href="#delete">{DELETE_DATAS}</a></li>
+
+            </ul>
+        </div>
+    </div>
+</div>

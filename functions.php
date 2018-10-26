@@ -2,8 +2,13 @@
 require_once 'settings.php';
 require_once 'template.php';
 session_start();
+
+$id = getDataOfUser($_SESSION['name'], "id");
+
 $template = new Template;
 $template->assign('FILENAME', basename($_SERVER['PHP_SELF'], '.php'));
+$template->assign('NAME', $_SESSION['name']);
+$template->assign('GOOGLE_ANALYTICS', renderGA());
 include 'lang/en.php';
 
 
@@ -19,9 +24,9 @@ function redirect($target){
     exit;
 }
 
-function isUserLoggedIn($name, $ssid){
+function isUserLoggedIn($gid, $ssid){
     global $conn;
-    $sql = "SELECT * FROM users WHERE name = '".$name."' AND ssid  = '".$ssid."'"; 
+    $sql = "SELECT * FROM users WHERE google_id = '".$gid."' AND ssid  = '".$ssid."'"; 
     $result = $conn->query($sql); 
     if ($result->num_rows == 1) { 
           return true;
@@ -30,61 +35,39 @@ function isUserLoggedIn($name, $ssid){
     }
 }
 
-function loginUser($name, $password){
+function loginUser($name, $email, $id){
     global $conn;
-    $sql = "SELECT * FROM users WHERE name = '$name' AND pass = '".encrypt($password)."'";
-    $result = $conn->query($sql);
     
-    if($result->num_rows == 1){
-        $ssid = encrypt(md5(time()));
-        
-        $sql = "UPDATE users SET ssid = '$ssid' WHERE name = '$name'";
-        
-        if ($conn->query($sql) === TRUE) {
-            $_SESSION['name'] = $name;
-            $_SESSION['ssid'] = $ssid;
-            
-            echo "1";
-        } else {
-            echo "-1";
-        }
-    } else {
-        echo "0";
+    $ssid = encrypt(md5(time()));
+	
+    $sql = "SELECT * FROM users WHERE google_id='".$_POST["id"]."'";
+	$result = $conn->query($sql);
+	if(!empty($result->fetch_assoc())){
+		$sql2 = "UPDATE users SET ssid = '".$ssid."' WHERE google_id='".$_POST["id"]."'";
+	}else{
+		$sql2 = "INSERT INTO users (google_id, ssid) VALUES ('".$_POST["id"]."', '".$ssid."')";
     }
+    
+    $_SESSION['ssid'] = $ssid;
+    $_SESSION['gid'] = $id;
+    $_SESSION['name'] = $name;
+
+	$conn->query($sql2);
+    
+    return true;
 }
 
-function registerUser($name, $password, $email){
-    global $conn;
-    $sql = "SELECT * FROM users WHERE name = '$name' OR email = '$email'";
-    $result = $conn->query($sql);
-    
-    if($result->num_rows == 0){
-        $ssid = encrypt(md5(time()));
-        
-        $sql = "INSERT INTO users (name, pass, email, ssid)
-        VALUES ('$name', '".encrypt($password)."', '$email', '$ssid')";
-
-        if ($conn->query($sql) === TRUE) {
-            $_SESSION['name'] = $name;
-            $_SESSION['ssid'] = $ssid;
-            echo '1';
-        } else {
-            echo '-1';
-        }
-    } else {
-        echo '0';
-    }
-}
 function getDataOfUser($name, $target){
     global $conn;
-    if($target == "id" || $target == "tutorialComplete" || $target == "email" || $target == "name"){
+    if($target == "id" || $target == "tutorialComplete" || $target == "name" || $target == "nick" || $target = "google_analytics"){
         $sql = "SELECT * FROM users WHERE name='".$name."'";
         $result = $conn->query($sql);
 
         while($row = $result->fetch_assoc()) {
             $user = $row;
+            
+            return $user[$target];
         }
-        return $user[$target];
     } else {
         return false;
     }
@@ -94,9 +77,9 @@ function sendPersonalInformations($name, $email){
     if(!empty($name) && !empty($email)){
         $sql2 = "UPDATE users SET name = '$name' AND email = '$email' WHERE id=$id";
         if ($conn->query($sql2) === TRUE) {
-            echo "Saved";
+            return true;
         } else {
-            echo "Not saved(?!)";
+            return false;
         }
     }
 }
@@ -104,7 +87,7 @@ function sendPersonalInformations($name, $email){
 function isThisListBelongsToUser($itemid){
     global $conn;
     global $id;
-    $sql = "SELECT * FROM lists WHERE ownerid='" . encrypt($id) . "' AND id = '" . $itemid . "'";
+    $sql = "SELECT * FROM lists WHERE owner='" . encrypt($id) . "' AND id = '" . $itemid . "'";
     $result = $conn->query($sql);
     if ($result->num_rows >> 0) {
         return true;
@@ -132,10 +115,10 @@ function isThisItemBelongsToUser($itemid, $listid){
 function createList($name){
     global $conn;
     global $id;
-    $sql    = "SELECT * FROM lists WHERE ownerid='" . encrypt($id) . "' AND name = '" . $name . "'";
+    $sql    = "SELECT * FROM lists WHERE owner='" . encrypt($id) . "' AND name = '" . $name . "'";
     $result = $conn->query($sql);
     if ($result->num_rows == 0) {
-        $sql = "INSERT INTO lists (name, ownerid) VALUES ('" . $name . "', '" . encrypt($id) . "')";
+        $sql = "INSERT INTO lists (name, owner) VALUES ('" . $name . "', '" . encrypt($id) . "')";
         if ($conn->query($sql) === TRUE) {
             $sql2 = "UPDATE users SET tutorialComplete = 1 WHERE id=$id";
             if ($conn->query($sql2) === TRUE) {
@@ -155,10 +138,10 @@ function trashList($listid){
     global $conn;
     global $id;
     if(isThisListBelongsToUser($listid)){
-        $sql = "UPDATE lists SET thrash = 1 WHERE ownerid='" . encrypt($id) . "' AND id = '" . $listid . "' ";
+        $sql = "UPDATE lists SET trash = 1 WHERE owner='" . encrypt($id) . "' AND id = '" . $listid . "' ";
         
         if ($conn->query($sql) === TRUE) {
-            $sql = "SELECT * FROM lists WHERE ownerid='" . encrypt($id) . "' AND thrash = 0";
+            $sql = "SELECT * FROM lists WHERE owner='" . encrypt($id) . "' AND trash = 0";
             $result = $conn->query($sql);
             echo $result->num_rows;
         } else {
@@ -174,7 +157,7 @@ function deleteList($listid){
         $sql = "DELETE FROM lists WHERE id=$listid";
         
         if ($conn->query($sql) === TRUE) {
-            $sql = "SELECT * FROM lists WHERE ownerid='" . encrypt($id) . "' AND thrash = 1";
+            $sql = "SELECT * FROM lists WHERE owner='" . encrypt($id) . "' AND trash = 1";
             $result = $conn->query($sql);
             echo $result->num_rows;
         } else {
@@ -187,10 +170,10 @@ function restoreList($listid){
     global $conn;
     global $id;
     if(isThisListBelongsToUser($listid)){
-        $sql = "UPDATE lists SET thrash = 0 WHERE ownerid='" . encrypt($id) . "' AND id = '" . $listid . "' ";
+        $sql = "UPDATE lists SET trash = 0 WHERE owner='" . encrypt($id) . "' AND id = '" . $listid . "' ";
         
         if ($conn->query($sql) === TRUE) {
-            $sql = "SELECT * FROM lists WHERE ownerid='" . encrypt($id) . "' AND thrash = 1";
+            $sql = "SELECT * FROM lists WHERE owner='" . encrypt($id) . "' AND trash = 1";
             $result = $conn->query($sql);
             echo $result->num_rows;
         } else {
@@ -294,12 +277,19 @@ function renderList($id, $additem){
         $item_adder = '';
     } 
     
-    $template->assign("LIST_NAME", $list["name"]);
-    $template->assign("LIST_ID", $id);
-    $template->assign("LIST_TOP_FABS", $fabs);
-    $template->assign("LIST_ADD_ITEM", $item_adder);
-    $template->assign("ITEM_LIST", renderItems($id));
-    $template->parse("html/list.html");
+    return "
+    <div class=\"col s12 m4 scale-transition\" id=\"list$id\">
+        <div class=\"card\">
+            <div class=\"card-image indigo\" style=\"min-height:80px\">
+                <span class=\"card-title truncate\">".$list['name']."</span> $fabs
+            </div>
+            <div class=\"card-content\">
+                $item_adder
+                <div id=\"item_list$id\">".renderItems($id)."</div>
+            </div>
+        </div>
+    </div>
+    ";
 }
 
 function renderItems($listid){
@@ -353,12 +343,42 @@ function renderDropdown($item, $listid){
     return $dropdown;
     
 }
-function validateEmailDB($email){
-    global $conn;
-    
-    $sql = "SELECT * FROM users WHERE email = '".$email."'";
-    $result = $conn->query($sql);
 
-    echo $result->num_rows;
+
+function changePrivacySettings($cb){
+    global $conn;
+    if(isUserLoggedIn($_SESSION['gid'], $_SESSION['ssid'])){
+        $sql = "UPDATE users SET google_analytics='$cb' WHERE name='".$_SESSION['name']."'";
+
+        if ($conn->query($sql) === TRUE) {
+            echo '1';
+        } else {
+            echo '0';
+        }
+        
+    }
+}
+
+function renderGA(){
+    if(getDataOfUser($_SESSION['name'], 'google_analytics') == 'on'){
+        $ga = "
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src='https://www.googletagmanager.com/gtag/js?id=UA-120924669-1'></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'UA-120924669-1');
+
+        </script>
+        ";
+    } else {
+        $ga = "";
+    }
+    return $ga;
 }
 ?>

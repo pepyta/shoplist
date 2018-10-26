@@ -1,30 +1,18 @@
-function openPage(page, def) {
+var header = document.getElementById('header');
+var content = document.getElementById('content');
+var bottom_bar = document.getElementById('bottom-bar');
 
-    var main = document.getElementById("main");
-    var box = document.getElementById("box");
+$(document).ready(function () {
+    //alert(openPage('./login.php'));
+    onSignIn();
+});
 
-    var card = document.getElementById("card");
-
-    if (def == 0) {
-        card.classList.remove("scale-in");
-        card.classList.add("scale-out");
-    }
+function openPage(page) {
     var xhr = typeof XMLHttpRequest != 'undefined' ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
-    xhr.open('get', page + '.php ', true);
+    xhr.open('get', page, false);
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
-
-            M.AutoInit();
-            $.getScript("js/" + page + ".js", function () {});
-            if (def == 0) {
-                setTimeout(function () {
-                    card.classList.remove("scale-out");
-                    card.classList.add("scale-in");
-                    box.innerHTML = xhr.responseText;
-                }, 300);
-            } else {
-                card.innerHTML = xhr.responseText;
-            }
+            return xhr.response;
         }
     }
     xhr.send();
@@ -32,27 +20,25 @@ function openPage(page, def) {
     close();
 }
 
-function renderLogin() {
-    var title = document.getElementById("title");
-    var link = document.getElementById("link");
 
-    title.innerHTML = "Please, login into your account";
-    link.innerHTML = "<a class='white-text' onclick='openPage('register', 0);' href='#'>Create account</a>";
+
+function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    googleUser.disconnect();
+    if (profile) {
+        $.ajax({
+            type: 'POST',
+            url: 'req.php?login',
+            data: {
+                id: profile.getId(),
+                name: profile.getName(),
+                email: profile.getEmail()
+            }
+        }).done(function (data) {
+            console.log(data);
+            window.location.href = 'index.php';
+        }).fail(function () {
+            alert("Posting failed.");
+        });
+    }
 }
-
-function renderRegister() {
-    var title = document.getElementById("title");
-    var link = document.getElementById("link");
-
-    title.innerHTML = "Please, login into your account";
-    link.innerHTML = "<a class='white-text' onclick='openPage('register', 0);' href='#'>Create account</a>";
-}
-$(document).ready(function () {
-    openPage("login", 1);
-    $('.modal').modal();
-    $('.sidenav').sidenav();
-    setTimeout(function () {
-        console.clear();
-        console.log("Don't try to hack me please 😭");
-    }, 200);
-});

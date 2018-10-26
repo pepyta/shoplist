@@ -6,7 +6,28 @@ body {
     -webkit-animation: Gradient 15s ease infinite;
     -moz-animation: Gradient 15s ease infinite;
     animation: Gradient 15s ease infinite;
+    display: table;
+    position: absolute;
+    height: 100%;
+    width: 100%;
 }
+
 html {
     background-color: #3f51b5;
+}
+
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.card .card-content {
+    padding: 32px 32px 0 32px !important;
+}
+
+.inner {
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    /*whatever width you want*/
 }

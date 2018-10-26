@@ -8,8 +8,12 @@ function openPage(page) {
             main.innerHTML = xhr.responseText;
             M.AutoInit();
             $.getScript("js/" + page + ".js", function () {});
-
+            M.updateTextFields();
             fixDropdowns();
+
+            $('.tap-target').tapTarget();
+
+            $('.tap-target').tapTarget().open();
         }
     }
     xhr.send();
@@ -22,8 +26,4 @@ $(document).ready(function () {
     openPage("mylists");
     $('.modal').modal();
     $('.sidenav').sidenav();
-    setTimeout(function () {
-        console.clear();
-        console.log("Don't try to hack me please 😭");
-    }, 200);
 });

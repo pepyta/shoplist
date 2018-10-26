@@ -8,6 +8,21 @@ body {
 
 }
 
+.sidenav {
+    width: 300px;
+    height: 100%;
+    position: relative;
+}
+
+.bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    line-height: 20px !important;
+    text-align: center !important;
+    margin-bottom: 10px;
+}
 
 /* Preloader */
 

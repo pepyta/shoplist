@@ -2,7 +2,7 @@ function trashList(listid) {
     var elem = document.getElementById("list" + listid);
 
     elem.classList.add("scale-out");
-    
+
     setTimeout(function () {
         elem.parentNode.removeChild(elem);
         if (xhr.responseText == 0) {
@@ -26,14 +26,14 @@ $(function () {
     $('.addItemForm').on('submit', function (e) {
         $.ajax({
             type: 'post',
-            url: 'req.php',
+            url: 'req.php?itemadd',
             data: $(this).serialize(),
-            success: function(data) {
+            success: function (data) {
                 var newList = data.replace(data.split(";")[0] + ";", "");
-                document.getElementById("item_list"+data.split(";")[0]).innerHTML = newList;
+                document.getElementById("item_list" + data.split(";")[0]).innerHTML = newList;
                 M.AutoInit();
                 fixDropdowns();
-                    grecaptcha.reset();
+                grecaptcha.reset();
             }
         });
         e.preventDefault();

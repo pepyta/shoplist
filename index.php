@@ -1,15 +1,16 @@
 <?php
 require 'functions.php';
 require_once 'template.php';
-if(!isUserLoggedIn($_SESSION['name'], $_SESSION['ssid'])){
-    redirect("login.php");
+
+if(!isUserLoggedIn($_SESSION['gid'], $_SESSION['ssid'])){
+    redirect("auth.php");
 }
 
 if (isset($_GET['add'])) {
-	$sql = "SELECT * FROM lists WHERE ownerid='" . encrypt($id) . "' AND name = '" . $_POST['name'] . "'";
+	$sql = "SELECT * FROM lists WHERE owner='" . encrypt($id) . "' AND name = '" . $_POST['name'] . "'";
 	$result = $conn->query($sql);
 	if ($result->num_rows == 0) {
-		$sql = "INSERT INTO lists (name, ownerid)
+		$sql = "INSERT INTO lists (name, owner)
                     VALUES ('" . $_POST['name'] . "', '" . encrypt($id) . "')";
 		if ($conn->query($sql) === TRUE) {
 			$sql = "UPDATE users SET tutorialComplete = 1 WHERE name = '" . $_SESSION['name'] . "'";
@@ -26,7 +27,7 @@ if (isset($_GET['add'])) {
 if (isset($_GET['additem'])) {
 	if ($name !== "") {
 		$listid = $_POST['listid'];
-		$sql = "SELECT * FROM lists WHERE ownerid='" . encrypt($id) . "' AND id=$listid";
+		$sql = "SELECT * FROM lists WHERE owner='" . encrypt($id) . "' AND id=$listid";
 		$result = $conn->query($sql);
 		if ($result->num_rows == 1) {
 			$sql = "SELECT * FROM items WHERE name = '" . $_POST['name'] . "' AND inListById = '" . encrypt($listid) . "'";
@@ -53,7 +54,6 @@ if (isset($_GET['additem'])) {
 		}
 	}
 }
-$template->assign('FILENAME', basename($_SERVER['PHP_SELF'], '.php'));
 $template->parse('html/head.html');
 $template->parse('html/navbar.html');
 $template->parse('html/index.html');
