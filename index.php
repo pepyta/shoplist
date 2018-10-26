@@ -1,5 +1,5 @@
 <?php
-require 'functions.php';
+require_once 'functions.php';
 require_once 'template.php';
 
 if(!isUserLoggedIn($_SESSION['gid'], $_SESSION['ssid'])){

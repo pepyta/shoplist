@@ -1,9 +1,9 @@
 <?php
 //TURN ERROR_REPORTING OFF
-error_reporting(1);
+error_reporting(E_ALL);
 
 //MYSQLI connection
-$conn = new mysqli("localhost", "USERNAME", "PW", "DB");
+$conn = new mysqli("mysql.nethely.hu", "root", "", "list");
 
 //Make sure website works properly
 if ($conn->connect_error) {

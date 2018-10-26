@@ -3,7 +3,7 @@ require_once 'settings.php';
 require_once 'template.php';
 session_start();
 
-$id = getDataOfUser($_SESSION['name'], "id");
+$id = getDataOfUser($_SESSION['gid'], "id");
 
 $template = new Template;
 $template->assign('FILENAME', basename($_SERVER['PHP_SELF'], '.php'));
@@ -57,16 +57,17 @@ function loginUser($name, $email, $id){
     return true;
 }
 
-function getDataOfUser($name, $target){
+function getDataOfUser($gid, $target){
     global $conn;
     if($target == "id" || $target == "tutorialComplete" || $target == "name" || $target == "nick" || $target = "google_analytics"){
-        $sql = "SELECT * FROM users WHERE name='".$name."'";
+        $sql = "SELECT * FROM users WHERE google_id='".$gid."'";
         $result = $conn->query($sql);
+        if($result->num_rows > 0){
+            while($row = $result->fetch_assoc()) {
+                $user = $row;
 
-        while($row = $result->fetch_assoc()) {
-            $user = $row;
-            
-            return $user[$target];
+                return $user[$target];
+            }
         }
     } else {
         return false;
@@ -360,7 +361,7 @@ function changePrivacySettings($cb){
 }
 
 function renderGA(){
-    if(getDataOfUser($_SESSION['name'], 'google_analytics') == 'on'){
+    if(getDataOfUser($_SESSION['gid'], 'google_analytics') == 'on'){
         $ga = "
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src='https://www.googletagmanager.com/gtag/js?id=UA-120924669-1'></script>
