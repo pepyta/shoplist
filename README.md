@@ -21,6 +21,27 @@ This is my first project so I appreciate any help or commit.
 ## Getting Started
 To make your own Shopping List you need a Web Server (you can use XAMPP for local).
 
+## Settings.php example
+``
+<?php
+//TURN ERROR_REPORTING OFF
+error_reporting(0);
+
+//MYSQLI connection
+$conn = new mysqli("HOST", "USER", "PASSWORD", "DATABASE");
+//Make sure website works properly
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+//Language set
+$lang = 'en';
+
+//SALT for more security
+$salt = 'YOUR VERY UNIQUE CODE';
+?>
+``
+
 ### Installing
 0. Download the project
 1. Copy it to your webserver.
