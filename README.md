@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://shoplist.ml">
-    <img src="https://shoplist.ml/list/img/web_hi_res_512.png" width="150">
+  <a href="https://shop.pepyta.ml">
+    <img src="https://raw.githubusercontent.com/pepyta/shoplist.ml/master/img/web_hi_res_512.png" width="150">
   </a>
 </p>
 
@@ -16,7 +16,7 @@ This project's purpose is to make an online shopping list with open-source code.
 This is my first project so I appreciate any help or commit.
 
 ## Live preview
-[Try the project](https://shoplist.ml)
+[Try the project](https://shop.pepyta.ml)
 
 ## Getting Started
 To make your own Shopping List you need a Web Server (you can use XAMPP for local).
