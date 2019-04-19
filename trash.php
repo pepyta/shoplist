@@ -10,13 +10,13 @@ $result = $conn->query($sql);
 if($result->num_rows !== 0){
     $completeLists = "";
     while($list = $result->fetch_assoc()){
-        $completeLists = $completeLists." ".renderList($list["id"], false);
+        $completeLists = $completeLists." ".renderList($list["id"], false, $list["name"]);
     }
     $template->assign('TRASH_CONTAINER_CONTENT', $completeLists);
     
 } else {
 $template->assign('TRASH_CONTAINER_CONTENT', '
-<div class="empty-cart">
+<div class="empty-cart '.getUserColor().'-text text-darken-2">
     <i class="material-icons cart" width="64px">delete_forever</i>
     <div class="flow-text">Your trash bin is empty</div>
 </div>

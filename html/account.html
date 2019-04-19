@@ -1,52 +1,45 @@
-<div class="row">
-    <div class="col s12 m9 l10">
-        <div id="privacy" class="section scrollspy">
-            <div class="row">
-                <h3 class="header col s12 indigo-text">
-                    {PRIVACY_SETTINGS}
-                </h3>
-                <div class="col s12 m6">
-                    <blockquote>
-                        You can change your privacy settings so you can disable the tracking of third party applications.<br> NOTE: If you disable third party tracking we may collect data of your usage of the site in order to provide you service.
-                    </blockquote>
-                </div>
-                <div class="col s12 m6">
-                    <div class="card">
-                        <div class="card-content">
-                            <form method="post" action="#" id="privacy_settings">
-                                <div class="input-field col s12">
-                                    <p>
-                                        <label>
-                                            <input type="checkbox" {CHECKBOX_GOOGLE_ANALYTICS} id="checkbox_google_analytics" name="checkbox_google_analytics" />
-                                            <span>Google Analytics</span>
-                                        </label>
+<div id="delete" class="modal">
+    <div class="modal-content">
+        <h4>Modal Header</h4>
+        <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+</div>
 
-                                    </p>
+<div class="valign-wrapper" id="account">
+    <div class="row">
+        <div class="col s12">
+            <div class="card">
+                <div class="card-content">
+                    <h1 class="flow-text center-align">My account</h1>
+                    <div class="row">
+                        <div class="col s12">
+
+                            <div class="row valign-wrapper">
+                                <div class="col s4 truncate"><b>{COLOR_SELECTION}</b></div>
+                                <div class="col s8">
+                                    {COLOR_SELECTION_COLORS}
                                 </div>
-                                <input type="submit" class="waves-effect waves-light btn-large indigo" value="{SAVE}">
-                            </form>
+                            </div>
+                            <div class="row">
+                                <div class="col s4 truncate"><b>{GOOGLE_ID}</b></div>
+                                <div class="truncate col s8">{MY_GOOGLE_ID}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col s4 truncate"><b>{SUPER_SECRET_TOKEN}</b></div>
+                                <div class="truncate col s8">{MY_SSID}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s5 right">
+                            <a class="modal-trigger" href="#delete"><button class="btn red waves-effect waves-light col s12">Delete my datas</button></a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div id="delete" class="section scrollspy">
-            <div class="row">
-                <h3 class="header col s12 indigo-text">
-                    {DELETE_DATAS}
-                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                </h3>
-            </div>
-        </div>
-    </div>
-    <div class="col hide-on-small-only m3 l2">
-        <div class="pinned">
-            <ul class="section table-of-contents">
-                <li><a href="#privacy">{PRIVACY_SETTINGS}</a></li>
-
-                <li><a href="#delete">{DELETE_DATAS}</a></li>
-
-            </ul>
         </div>
     </div>
 </div>

@@ -3,10 +3,6 @@ body {
     height: 100%;
 }
 
-body {
-    overflow-x: hidden;
-
-}
 
 .sidenav {
     width: 300px;
@@ -79,11 +75,13 @@ a {
 }
 
 @media only screen and (max-width: 992px) {
+
     header,
     main,
     footer {
         left: 0;
     }
+
     .empty-cart {
         left: 50%;
     }
@@ -91,4 +89,15 @@ a {
 
 .btn-floating {
     z-index: 2;
+}
+
+#main,
+#account {
+    height: 100%;
+    align-content: left;
+}
+
+
+.dropdown-content {
+    min-width: 170px;
 }

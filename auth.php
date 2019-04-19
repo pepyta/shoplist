@@ -6,7 +6,6 @@ error_reporting(1);
 if(isUserLoggedIn($_SESSION['name'], $_SESSION['ssid'])){
     redirect("index.php");
 }
-
 $template->assign('RECAPTCHA', $recaptcha);
 $template->assign('HEADER', "SHOPLIST");
 $template->assign('BOTTOM_BAR', "");

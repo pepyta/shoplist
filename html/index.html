@@ -2,7 +2,7 @@
 <div id="preloader">
     <div id="status">
         <div class="preloader-wrapper active">
-            <div class="spinner-layer spinner-indigo-only">
+            <div class="spinner-layer spinner-custom-only">
                 <div class="circle-clipper left">
                     <div class="circle"></div>
                 </div>
@@ -18,7 +18,7 @@
 </div>
 
 <div id="modal1" class="modal">
-    <form method="POST" name="add" action="?add" id="add">
+    <form method="POST" name="add" id="createList">
         <div class="modal-content">
             <div class="flow-text">{CREATE_LIST_MODAL_TITLE}</div>
             <div class="input-field col s12">
@@ -29,7 +29,7 @@
         </div>
         <div class="modal-footer">
             <a onclick="form.submit();">
-            <button class="btn waves-effect waves-light indigo btn-flat white-text">{CREATE}</button>
+                <button class="btn waves-effect waves-light {COLOR} btn-flat white-text modal-close">{CREATE}</button>
             </a>
         </div>
     </form>

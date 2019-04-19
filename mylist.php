@@ -10,11 +10,11 @@ if($result->num_rows !== 0){
     $template->assign('MY_LISTS_CONTAINER_CONTENT', $completeLists);
 } else {
    $template->assign('MY_LISTS_CONTAINER_CONTENT', '
-    <div class="empty-cart '.getUserColor().'-text text-darken-2" id="noList">
+    <div class="empty-cart indigo-text" id="noList">
         <i class="material-icons cart" width="64px">remove_shopping_cart</i>
         <div class="flow-text">Your shopping list is empty</div>
     </div>');
 }
 
-$template->parse('html/mylists.html');
+$template->parse('html/mylist.html');
 ?>

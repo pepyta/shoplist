@@ -4,15 +4,28 @@ include 'functions.php';
 if(!isUserLoggedIn($_SESSION['gid'], $_SESSION['ssid'])){
     redirect('login.php');
 }
-if(getDataOfUser($_SESSION['name'], 'google_analytics') == 'on'){
-    $checkbox_google_analytics = 'checked="checked"';
-} else {
-    $checkbox_google_analytics = "";
+
+//$colors = '<div class="input-field col s12 m6"><select class="icons"><option value="" disabled selected>Choose your option</option>';
+$colors = "";
+for($i = 1; $i < 10; $i++){
+    
+    if(getDataOfUser($_SESSION['gid'], "color") == $i){
+        $selected = '<i class="material-icons">done</i>';
+    } else {
+        $selected = '';
+    }
+    $colors = $colors.'<a class="btn-floating btn-large waves-effect waves-light '.getColor($i).' darken-2" onclick="setColor('.$i.');">
+    '.$selected.'
+    </a> ';
+    
+    
+    //$colors = $colors.'<option value="" data-icon="images/sample-1.jpg" class="left" onclick="setColor('.$i.');">'.getColor($i).'</option>';
 }
-$template->assign('EMAIL', getDataOfUser($_SESSION['name'], 'email'));
-$template->assign('USERNAME', getDataOfUser($_SESSION['name'], 'name'));
-$template->assign('NAME', getDataOfUser($_SESSION['name'], 'nick'));
-$template->assign('CHECKBOX_GOOGLE_ANALYTICS', $checkbox_google_analytics);
+//$colors = $colors.'</select><label></label></div>';
+$template->assign('COLOR_SELECTION_COLORS', $colors);
+
+$template->assign('MY_GOOGLE_ID', $_SESSION['gid']);
+$template->assign('MY_SSID', $_SESSION['ssid']);
 
 $template->parse('html/account.html');
 ?>

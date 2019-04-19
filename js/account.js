@@ -34,6 +34,18 @@ $(function () {
     });
 });
 
+function setColor(color) {
+
+    $.ajax({
+        type: 'get',
+        url: "req.php?req=setColor;" + color,
+        data: null,
+        success: function (data) {
+            location.reload();
+        }
+    });
+    //location.reload();
+}
 
 
 $(function () {

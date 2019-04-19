@@ -4,8 +4,6 @@ $(window).on('load', function () { // makes sure the whole site is loaded
     $('body').delay(350).css({
         'overflow': 'visible'
     });
-
-    fixReCaptcha();
 })
 
 function fixDropdowns() {
@@ -13,15 +11,6 @@ function fixDropdowns() {
         $('.dropdown-content').appendTo("body"); //fix recaptcha positioning to body  
     });
     $.initialize(".dropdown-content", function () {
-        $(this).appendTo("body"); //fix recaptcha positioning to body, even if it loads after the page  
-    });
-}
-
-function fixReCaptcha() {
-    jQuery(document).ready(function () {
-        $('.grecaptcha-badge').appendTo("body"); //fix recaptcha positioning to body  
-    });
-    $.initialize(".grecaptcha-badge", function () {
         $(this).appendTo("body"); //fix recaptcha positioning to body, even if it loads after the page  
     });
 }

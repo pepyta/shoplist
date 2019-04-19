@@ -11,7 +11,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="description" content="Shopping List is a simple online service where you can store your shopping list.">
     <meta name="keywords" content="list, shopping, responsive, mobile-friendly">
-    <meta name="theme-color" content="#3f51b5">
+    <meta name="theme-color" content="{COLORHEX}">
     <link rel="manifest" href="/manifest.json">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -49,6 +49,46 @@
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 
     <meta name="google-signin-client_id" content="347334941281-h4m0iihpnk9las0f9hi4m7c839hpr4if.apps.googleusercontent.com">
+    <style>
+        .input-field input[type=date]:focus+label,
+        .input-field input[type=text]:focus+label,
+        .input-field input[type=email]:focus+label,
+        .input-field input[type=password]:focus+label,
+        .input-field input[type=number]:focus+label {
+            color: {COLORHEX} !important;
+        }
+
+        .input-field input[type=date]:focus,
+        .input-field input[type=text]:focus,
+        .input-field input[type=email]:focus,
+        .input-field input[type=password]:focus,
+        .input-field input[type=number]:focus {
+            border-bottom: 1px solid {COLORHEX} !important;
+            box-shadow: 0 1px 0 0 {COLORHEX} !important;
+        }
+
+        .grecaptcha-badge {
+            line-height: 50px !important;
+        }
+
+        blockquote {
+            border-left: 5px solid {COLORHEX};
+        }
+        
+        .spinner-custom,
+        .spinner-custom-only {
+            border-color: {COLORHEX};
+        }
+        
+        [type="checkbox"]:checked+span:not(.lever)::before {
+            border-color: transparent {COLORHEX} {COLORHEX} transparent;
+        }
+        .dropdown-content li > span {
+            color: {COLORHEX} !important;
+        }
+
+    </style>
+
 </HEAD>
 
 <BODY>

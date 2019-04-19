@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://shoplist.ml">
-    <img src="https://i.imgur.com/2tQpAJG.png" width="150">
+    <img src="https://shoplist.ml/list/img/web_hi_res_512.png" width="150">
   </a>
 </p>
 
@@ -24,35 +24,16 @@ To make your own Shopping List you need a Web Server (you can use XAMPP for loca
 ### Installing
 0. Download the project
 1. Copy it to your webserver.
-2. Change the $salt to something unique (for example encrypt a word and set it as salt)
-3. Profit!
+2. Change $conn = new mysqli("SERVER", "USERNAME", "PW", "DB"); in settings.php
+   - SERVER to your MySQL server's address (usually localhost)
+   - USERNAME to your MySQL username
+   - PW to your MySQL password
+   - DB to the name of the MySQL database
+3. Change the $salt to something unique (for example encrypt a word and set it as salt)
+4. Profit!
 
-### Set up your settings.php file!
-```
-<?php
-//TURN ERROR_REPORTING OFF
-error_reporting(0);
-
-//MYSQLI connection
-$conn = new mysqli("localhost", "USERNAME", "PASSWORD", "DATABASE");
-
-//Make sure website works properly
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-
-//Language set
-$lang = 'en';
-
-//Recaptcha code (sitekey)
-$recaptcha = 'Your unique ReCaptcha code';
-
-//SALT for more security
-$salt = 'Whatever you want to use for salting your passwords';
-?>
-```
 ## Test if it works
-To make sure your website works correctly go to YOURWEBSITE.com.<br>
+To make sure your website works correctly go to YOURWEBSITE.com/list.<br>
 If you don't get a plain text with MySQL warnings, then you set your Shopping List webserver up correctly.
 
 ## Built With
@@ -68,6 +49,13 @@ If you want to contribute just make a pull request and I will test it and if it 
 * **Gál Péter** -  [pepyta](https://github.com/pepyta)
 
 See also the list of [contributors](https://github.com/pepyta/shoplist.ml/graphs/contributors) who participated in this project.
+
+## In motion
+<p>
+<img src="https://shoplist.ml/github/1.gif" width="31%" style="display:inline-block;">
+<img src="https://shoplist.ml/github/2.gif" width="31%" style="display:inline-block;">
+<img src="https://shoplist.ml/github/3.gif" width="31%" style="display:inline-block;">
+</p>
 
 ## License
 

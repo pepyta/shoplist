@@ -24,7 +24,6 @@ function openPage(page) {
 
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
-    googleUser.disconnect();
     if (profile) {
         $.ajax({
             type: 'POST',
@@ -40,5 +39,7 @@ function onSignIn(googleUser) {
         }).fail(function () {
             alert("Posting failed.");
         });
+    } else {
+        console.log("asd");
     }
 }
