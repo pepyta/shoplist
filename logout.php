@@ -1,6 +1,7 @@
 <?php
 session_start();
-session_destroy();
+$_SESSION['ssid'] = "";
+$_SESSION['gid'] = "";
+$_SESSION['name'] = "";
 Header("Location:auth.php");
-
 ?>
