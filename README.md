@@ -8,7 +8,7 @@
 
 <p align="center">
    Material themed shopping list.<br>
-   Made with HTML, CSS, JS, PHP and with <3
+   Made with HTML, CSS, JS, PHP and with ❤️
 </p>
 
 ## Introduction
