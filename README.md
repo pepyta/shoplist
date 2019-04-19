@@ -51,7 +51,8 @@ $salt = 'YOUR VERY UNIQUE CODE';
    - PW to your MySQL password
    - DB to the name of the MySQL database
 3. Change the $salt to something unique (for example encrypt a word and set it as salt)
-4. Profit!
+4. Import the [IMPORT.sql](https://raw.githubusercontent.com/pepyta/shoplist.ml/master/IMPORT.sql) file to your MySQL server
+5. Profit!
 
 ## Test if it works
 To make sure your website works correctly go to YOURWEBSITE.com/list.<br>
