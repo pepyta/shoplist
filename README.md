@@ -22,7 +22,7 @@ This is my first project so I appreciate any help or commit.
 To make your own Shopping List you need a Web Server (you can use XAMPP for local).
 
 ## Settings.php example
-``
+```
 <?php
 //TURN ERROR_REPORTING OFF
 error_reporting(0);
@@ -40,7 +40,7 @@ $lang = 'en';
 //SALT for more security
 $salt = 'YOUR VERY UNIQUE CODE';
 ?>
-``
+```
 
 ### Installing
 0. Download the project
