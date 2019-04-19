@@ -65,7 +65,6 @@ $(function () {
                 document.getElementById("item_list" + data.split(";")[0]).innerHTML = newList;
                 M.AutoInit();
                 fixDropdowns();
-                grecaptcha.reset();
             }
         });
         e.preventDefault();
@@ -96,7 +95,6 @@ $(function () {
                             document.getElementById("item_list" + data.split(";")[0]).innerHTML = newList;
                             M.AutoInit();
                             fixDropdowns();
-                            grecaptcha.reset();
                         }
                     });
                     e.preventDefault();

@@ -8,9 +8,9 @@ $(window).on('load', function () { // makes sure the whole site is loaded
 
 function fixDropdowns() {
     jQuery(document).ready(function () {
-        $('.dropdown-content').appendTo("body"); //fix recaptcha positioning to body  
+        $('.dropdown-content').appendTo("body"); //fix dropdown positioning to body  
     });
     $.initialize(".dropdown-content", function () {
-        $(this).appendTo("body"); //fix recaptcha positioning to body, even if it loads after the page  
+        $(this).appendTo("body"); //fix dropdown positioning to body, even if it loads after the page  
     });
 }
